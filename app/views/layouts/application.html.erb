@@ -12,9 +12,14 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+   
     <main role="main">
+    	
+       <div class="container">
        <%= render 'layouts/messages' %>
        <%= yield %>
+       </div>
+       <div class="debug_dump"><%= debug(params) %></div>
     </main>
   </body>
 </html>
