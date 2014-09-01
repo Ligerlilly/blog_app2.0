@@ -16,13 +16,31 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.update(entry_params)
-        format.html { redirect_to @entry, notice: 'entry was successfully updated' }
+        format.html { redirect_to @entry, notice: 'Entry was successfully updated' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def create
+    @entry = Entry.new(entry_params)
+    
+    respond_to do |format|
+      if @entry.save
+        format.html { redirect_to @entry, notice: 'Entry has been created.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @entry.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def new
+    @entry = Entry.new
   end
   
   private
