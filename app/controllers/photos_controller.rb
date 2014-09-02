@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   def new
+    @entry = Entry.find(params[:entry_id])
     @photo = Photo.new(entry_id: params[:entry_id])
   end
   
@@ -11,7 +12,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     if @photo.save
       flash[:notice] = "Successfully created photo"
-      redirect_to edit_entry_path(@photo.entry)
+      redirect_to edit_entry_path(@photo.entry_id)
     else
       render action: 'new'
     end

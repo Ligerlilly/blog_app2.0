@@ -3,7 +3,7 @@
 <h3><%= entry.title %></h3>
 <br />
 <% for photo in entry.photos %>
-  <%= link_to image_tag(photo.image_url(:thumb).to_s), photo_path(photo.id) %>
+  <%= link_to image_tag(photo.image_url(:thumb).to_s), entry_photo_path(entry, photo.id) %>
   <div class="center"><%= photo.caption %></div>
   <br />
 <% end %>
