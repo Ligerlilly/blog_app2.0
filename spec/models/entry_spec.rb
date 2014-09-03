@@ -13,4 +13,9 @@ RSpec.describe Entry, :type => :model do
     before { entry.title = "" }
     it { should_not be_valid }  
   end
+  
+  describe "with blank content" do
+    before { entry.content = "" }
+    it { should_not be_valid }  
+  end
 end

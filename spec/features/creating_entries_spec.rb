@@ -2,8 +2,8 @@
   
   feature 'Creating entries' do
     before do
-    visit '/'
-    click_link 'blog'
+      visit '/'
+      click_link 'blog'
     end
 
     scenario 'can create a entry' do
@@ -11,9 +11,9 @@
       fill_in 'Title', with: 'Test'
       fill_in 'Content', with: 'Phase one'
       click_button 'Create Entry'
-      page.should have_content('Entry has been created.')
+      expect(page).to have_content('Entry has been created.')
     
       entry = Entry.find_by_title('Test')
-      page.current_path.should == entry_path(entry)
+      expect(page.current_path) == entry_path(entry)
     end
   end
