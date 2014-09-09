@@ -13,6 +13,6 @@ RSpec.describe Photo, :type => :model do
     before { photo.image = File.open(File.join(Rails.root, '/spec/fixtures/files/riverWithT&A.jpg')) }
     it { should_not be_valid }
   end
-    
+  
   
 end
