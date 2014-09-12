@@ -1,7 +1,9 @@
 class PhotosController < ApplicationController
+  before_action :find_entry
+  
   def new
     @entry = Entry.find(params[:entry_id])
-    @photo = Photo.new(entry_id: params[:entry_id])
+    @photo = Photo.new(entry_id: @entry.id)
   end
   
   def show
@@ -14,7 +16,7 @@ class PhotosController < ApplicationController
       flash[:notice] = "Successfully created photo"
       redirect_to edit_entry_path(@photo.entry_id)
     else
-      render action: 'new'
+      redirect_to new_entry_photo_path(@entry), alert: "You must attach image."
     end
   end
 
@@ -29,8 +31,12 @@ class PhotosController < ApplicationController
     end
   end
 
- 
+
   private
+  def find_entry
+    @entry = Entry.find(params[:entry_id])
+  end
+  
   def photo_params
     params.require(:photo).permit(:caption, :image, :entry_id)
   end
