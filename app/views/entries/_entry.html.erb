@@ -9,7 +9,7 @@
 <% end %>
 <%= simple_format(entry.content) %>
 <br />
-<%= link_to 'Edit', edit_entry_path(entry.id) %>
+<%= link_to 'Edit', edit_entry_path(entry.id) if current_user.try(:admin?) %>
 <br />
 <br />
 <br />
