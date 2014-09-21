@@ -2,12 +2,18 @@
    
    feature "Uploading a photo" do
       before do
+        FactoryGirl.create(:user, email: 'test@test.com', password: 'password', admin: true) 
+        FactoryGirl.create(:user, email: 'test2@test.com', password: 'password') 
         FactoryGirl.create(:entry, title: 'Hi', content: 'There')
         visit '/'
         click_link 'blog'
       end
       
-      scenario 'can upload and delete a photo' do
+      scenario 'admin can upload and delete a photo' do
+        click_link 'Sign in'
+        fill_in 'Email', with: 'test@test.com'
+        fill_in 'Password', with: 'password'
+        click_button 'Log in'
         click_link 'Edit'
         click_link 'Add photo'
         fill_in 'Caption', with: "Test"
@@ -20,9 +26,23 @@
       end
       
       scenario "can't upload with out attaching a file" do
+        click_link 'Sign in'
+        fill_in 'Email', with: 'test@test.com'
+        fill_in 'Password', with: 'password'
+        click_button 'Log in'
         click_link 'Edit'
         click_link "Add photo"
         click_button "Create Photo"
         expect(page).to have_content("You must attach image.")
+      end
+      
+      scenario "can't upload photo unless admin" do
+        click_link 'Sign in'
+        fill_in 'Email', with: 'test2@test.com'
+        fill_in 'Password', with: 'password'
+        click_button 'Log in'
+        expect(page).not_to have_content('Edit')
+        visit 'entries/1/photos/new'
+        expect(page).to have_content("You must be an admin to do that.")
       end
    end
