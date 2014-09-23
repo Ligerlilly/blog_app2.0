@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_action :is_user_admin, except: [:index, :show]
   def index
     @entries = Entry.all
   end
@@ -47,5 +48,6 @@ class EntriesController < ApplicationController
   def entry_params
     params.require(:entry).permit(:title, :content, :photo)
   end
+  
      
 end

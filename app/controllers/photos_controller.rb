@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :find_entry
+  before_action :is_user_admin, except: :show
   
   def new
     @entry = Entry.find(params[:entry_id])
