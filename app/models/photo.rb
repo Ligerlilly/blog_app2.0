@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: photos
+#
+#  id         :integer          not null, primary key
+#  image      :string(255)
+#  caption    :text
+#  entry_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'file_size_validator'
 class Photo < ActiveRecord::Base
    belongs_to :entry

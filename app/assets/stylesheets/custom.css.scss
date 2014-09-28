@@ -1,5 +1,5 @@
 
-
+// I owe Michael Hartl a beer
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -261,6 +261,13 @@ h3 {
   float: left;
   padding-right: 5px;
  
+}
+
+#comment_form {
+  textarea {
+    width: 300px;
+    height: 100px;
+  }
 }
 
 

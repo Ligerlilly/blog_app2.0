@@ -12,7 +12,8 @@
       <!--<%= link_to 'Home', root_path, class: 'navbar-brand', id: "logo" %>-->
       <% unless params[:controller] == 'visitors' %>
         <%= link_to 'Blog', entries_path, class: 'navbar-brand', id: 'logo' %>
-        <%= link_to 'New entry', new_entry_path, class: 'navbar-brand', id: 'logo' %>
+        <%= link_to 'New entry', new_entry_path, class: 'navbar-brand', id: 'logo' if current_user.try(:admin?) %>
+        
       <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
         <%= link_to 'Sign in', new_user_session_path, class: 'sign_in_out', id: 'logo' %>
       <% end %>

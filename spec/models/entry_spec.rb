@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: entries
+#
+#  id         :integer          not null, primary key
+#  title      :text
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe Entry, :type => :model do

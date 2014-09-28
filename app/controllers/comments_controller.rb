@@ -10,19 +10,39 @@ class CommentsController < ApplicationController
   end 
 
   def create
-    @comment = @commentable.comments.new(params[:comment])
+    @comment = @commentable.comments.new(comment_params)
     @comment.user_id = current_user.id
 
-    if @comment.save
-      redirect_to entry_path(@comment.commentable)
-    else
-      redirect_to entries_path, alert: 'Comment error'
+    respond_to do |format|
+      if @comment.save
+        format.html { entries_path }
+        format.js {} 
+        format.json { render json: @comment,
+          status: :created, location: @comment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @comment.errors,
+          status: :unprocessable_entity }
+      end
+    end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.js {} 
+      format.json { head :no_content }
+    end
+  end  
+
   private
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
   
   def load_commentable
     resource, id = request.path.split('/')[1,2]
-    @commentable = resoure.singularize.classify.constantize.find(id)
+    @commentable = resource.singularize.classify.constantize.find(id)
   end
 end

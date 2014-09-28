@@ -1,0 +1,3 @@
+$("#comment_button-<%= @comment.commentable_id %>").hide();
+$("#comment-<%= @comment.commentable_id %>").html("<%= j render 'form' %>");
+
