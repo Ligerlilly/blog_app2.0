@@ -1,7 +1,4 @@
  
-$("#comment_list-<%= @comment.commentable_id %>").append("<li id='comment_li-<%= @comment.id %>'>"
-	+ "<%= @comment.content %> "
-	+ "<a data-confirm='Are you sure?' data-method='delete' data-remote='true' href='/entries/<%= @comment.commentable_id %>/comments/<%= @comment.id %>' rel='nofollow'>"
-	+ "Delete</a></li>");
+$("#comment_table-<%= @comment.commentable_id %>").append("<%= j render @comment %>");
 $("#comment_form").remove();
 $("#comment_button-<%= @comment.commentable_id %>").show();

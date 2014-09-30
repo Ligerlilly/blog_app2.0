@@ -11,19 +11,20 @@
 <% end %>
 <%= simple_format(entry.content) %>
 <br />
-<ul id='comment_list-<%= entry.id %>'>
-<% entry.comments.each do |comment| %>
+<table id='comment_table-<%= entry.id %>'>
   
-  	<li id="comment_li-<%= comment.id %>"><%= comment.content %> 
-  		<% if current_user.try(:id) == comment.user_id %> 
-  		<%= link_to 'Delete', entry_comment_path(entry, comment),
-  		 method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>
-  		 <% end %>
-  		 </li>
-  		
+  <% entry.comments.each do |comment| %>
+    <tr id="comment_tr-<%= comment.id %>">
+      <td><%= simple_format(comment.content) %></td>
+  	  <td><% if current_user.try(:id) == comment.user_id %> 
+  	        <%= link_to 'Delete', entry_comment_path(entry, comment),
+  		      method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>
+  	     <% end %>
+  	</td>
+  </tr>	
  
 <%end%>
-</ul>
+</table>
 <div id="comment-<%= entry.id %>"></div>
 
 
