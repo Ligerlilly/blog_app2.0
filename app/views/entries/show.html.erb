@@ -1,9 +1,5 @@
 <h3><%= @entry.title %></h3>
-<% for photo in @entry.photos %>
-  <%= link_to image_tag(photo.image_url(:thumb).to_s), photo_path(photo.id) %>
-  <div class="center"><%= photo.caption %></div>
-  <br />
-<% end %>
+<%= render @entry.photos %>
 <%= simple_format(@entry.content) %>
 <br />
 <%= link_to 'Edit', edit_entry_path(@entry.id) if current_user.try(:admin?) %>

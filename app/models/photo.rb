@@ -12,7 +12,7 @@
 
 require 'file_size_validator'
 class Photo < ActiveRecord::Base
-   belongs_to :entry
+   belongs_to :photoable, polymorphic: true
    mount_uploader :image, ImageUploader
     validates :image, 
     :presence => true, 

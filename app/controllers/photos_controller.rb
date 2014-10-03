@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
+  before_action :load_photoable
   before_action :find_entry
   before_action :is_user_admin, except: :show
   
   def new
-    @entry = Entry.find(params[:entry_id])
-    @photo = Photo.new(entry_id: @entry.id)
+    @photo = @photoable.photos.new
   end
   
   def show
@@ -12,10 +12,10 @@ class PhotosController < ApplicationController
   end
  
   def create
-    @photo = Photo.new(photo_params)
+    @photo = @photoable.photos.new(photo_params)
     if @photo.save
       flash[:notice] = "Successfully created photo"
-      redirect_to edit_entry_path(@photo.entry_id)
+      redirect_to edit_entry_path(@photo.photoable_id)
     else
       redirect_to new_entry_photo_path(@entry), alert: "You must attach image."
     end
@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    entry_id = @photo.entry_id
+    entry_id =  @photo.photoable_id
     @photo.destroy
 
     respond_to do |format|
@@ -40,5 +40,10 @@ class PhotosController < ApplicationController
   
   def photo_params
     params.require(:photo).permit(:caption, :image, :entry_id)
+  end
+
+  def load_photoable
+    resource, id = request.path.split('/')[1,2]
+    @photoable = resource.singularize.classify.constantize.find(id)
   end
 end

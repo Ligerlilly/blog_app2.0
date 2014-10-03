@@ -4,26 +4,11 @@
 <div id="entry-<%= entry.id %>">
 <h3><%= entry.title %></h3>
 <br />
-<% for photo in entry.photos %>
-  <%= link_to image_tag(photo.image_url(:thumb).to_s), entry_photo_path(entry, photo.id) %>
-  <div class="center"><%= photo.caption %></div>
-  <br />
-<% end %>
+<%= render entry.photos %>
 <%= simple_format(entry.content) %>
 <br />
 <table id='comment_table-<%= entry.id %>'>
-  
-  <% entry.comments.each do |comment| %>
-    <tr id="comment_tr-<%= comment.id %>">
-      <td><%= simple_format(comment.content) %></td>
-  	  <td><% if current_user.try(:id) == comment.user_id %> 
-  	        <%= link_to 'Delete', entry_comment_path(entry, comment),
-  		      method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>
-  	     <% end %>
-  	</td>
-  </tr>	
- 
-<%end%>
+  <%= render entry.comments %>
 </table>
 <div id="comment-<%= entry.id %>"></div>
 

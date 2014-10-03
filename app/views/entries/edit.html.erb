@@ -1,12 +1,7 @@
 <h2>edit</h2>
 
 <br />
-<% for photo in @entry.photos %>
-  <%= image_tag photo.image_url(:thumb).to_s %>
-  <div class="center"><%= photo.caption %>
-  <%= link_to 'Delete', entry_photo_path(@entry, photo), method: :delete, data: { confirm: "Are you sure?" }  %>
-  </div>
-<% end %>
+<%= render @entry.photos %>
 <br />
 <%= link_to "Add photo", new_entry_photo_path(@entry),  class: "btn btn-primary" %>
 <br />
