@@ -1,5 +1,11 @@
 <tr id="comment_tr-<%= comment.id %>">
-      <td><%= simple_format(comment.content) %></td>
+	  <td><% if User.find(comment.user_id).avatar_url.nil? %>
+	  	    <%= image_tag "eggTastic.jpg", id: 'eggTastic' %>
+	  	  <% else %>
+	  	    <%= image_tag User.find(comment.user_id).avatar_url(:avatar).to_s %></td>
+	  	  <% end %>
+	  <td><b><%= User.find(comment.user_id).username %>:</b></td>
+      <td class="comments"><%= simple_format(comment.content) %></td>
   	  <td><% if current_user.try(:id) == comment.user_id %> 
   	        <%= link_to 'Delete', entry_comment_path(comment.commentable_id, comment),
   		      method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>

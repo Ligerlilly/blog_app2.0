@@ -7,7 +7,7 @@
 <%= render entry.photos %>
 <%= simple_format(entry.content) %>
 <br />
-<table id='comment_table-<%= entry.id %>'>
+<table id='comment_table-<%= entry.id %>' class='comment_table'>
   <%= render entry.comments %>
 </table>
 <div id="comment-<%= entry.id %>"></div>
