@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  validates :username,
+  validates :username, length: { maximum: 12 },
   uniqueness: {
     case_sensitive: false
   }

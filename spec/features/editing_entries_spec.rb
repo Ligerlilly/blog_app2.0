@@ -3,8 +3,8 @@
   feature 'Editing entries' do
     
     before do
-      FactoryGirl.create(:user, email: 'test@test.com', password: 'password', admin: true) 
-      FactoryGirl.create(:user, email: 'test2@test.com', password: 'password') 
+      FactoryGirl.create(:user, email: 'test@test.com', password: 'password', username: 'k', admin: true) 
+      FactoryGirl.create(:user, email: 'test2@test.com', password: 'password', username: 'j') 
       FactoryGirl.create(:entry, title: 'Hi', content: 'There')
       visit '/'
       click_link 'blog'

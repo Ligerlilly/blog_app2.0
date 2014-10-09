@@ -1,4 +1,4 @@
-<%= form_for [@entry, @photo], :html => { :multipart => true } do |f| %>
+<%= form_for [@photoable, @photo], :html => { :multipart => true } do |f| %>
   <% if @photo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@photo.errors.count, "error") %></h2>

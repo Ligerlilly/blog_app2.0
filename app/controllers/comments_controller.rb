@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { entries_path }
+        format.html { redirect_to entries_path, notice: 'Comment has been created.' }
         format.js {} 
         format.json { render json: @comment,
           status: :created, location: @comment }
@@ -26,11 +26,12 @@ class CommentsController < ApplicationController
       end
     end
   end
-
+  
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
+      format.html { redirect_to entries_path }
       format.js {} 
       format.json { head :no_content }
     end

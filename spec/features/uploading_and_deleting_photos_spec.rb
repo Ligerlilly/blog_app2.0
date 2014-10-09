@@ -2,8 +2,8 @@
    
    feature "Uploading a photo" do
       before do
-        FactoryGirl.create(:user, email: 'test@test.com', password: 'password', admin: true) 
-        FactoryGirl.create(:user, email: 'test2@test.com', password: 'password') 
+        FactoryGirl.create(:user, email: 'test@test.com', password: 'password', username: 'admin', admin: true) 
+        FactoryGirl.create(:user, email: 'test2@test.com', password: 'password', username: 'b') 
         FactoryGirl.create(:entry, title: 'Hi', content: 'There')
         visit '/'
         click_link 'blog'
@@ -33,7 +33,7 @@
         click_link 'Edit'
         click_link "Add photo"
         click_button "Create Photo"
-        expect(page).to have_content("You must attach image.")
+        expect(page).to have_content("Image can't be blank")
       end
       
       scenario "can't upload photo unless admin" do

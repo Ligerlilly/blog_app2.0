@@ -3,11 +3,12 @@
 <br />
 <div id="entry-<%= entry.id %>">
 <h3><%= entry.title %></h3>
+<p>Posted <%= time_ago_in_words(entry.created_at) %> ago.</p>
 <br />
 <%= render entry.photos %>
 <%= simple_format(entry.content) %>
 <br />
-<table id='comment_table-<%= entry.id %>' class='comment_table'>
+<table id='comment_table-<%= entry.id %>' class='comment_tables'>
   <%= render entry.comments %>
 </table>
 <div id="comment-<%= entry.id %>"></div>

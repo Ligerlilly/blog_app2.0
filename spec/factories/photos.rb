@@ -16,6 +16,6 @@ FactoryGirl.define do
   factory :photo do
     image File.open(File.join(Rails.root, '/spec/fixtures/files/slipHit.jpg'))
     caption "MyText"
-    entry_id 1
+    photoable_id 1
   end
 end

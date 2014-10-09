@@ -1,14 +1,15 @@
-<tr id="comment_tr-<%= comment.id %>">
-	  <td><% if User.find(comment.user_id).avatar_url.nil? %>
-	  	    <%= image_tag "eggTastic.jpg", id: 'eggTastic' %>
+<tr id="comment_tr-<%= comment.id %>" class="comments_tr">
+	  <td class="user_avatars"><% if User.find(comment.user_id).avatar_url.nil? %>
+	  	    <%= image_tag "eggTastic.jpg", id: 'eggTastic', class: 'avatar' %>
 	  	  <% else %>
 	  	    <%= image_tag User.find(comment.user_id).avatar_url(:avatar).to_s %></td>
 	  	  <% end %>
-	  <td><b><%= User.find(comment.user_id).username %>:</b></td>
-      <td class="comments"><%= simple_format(comment.content) %></td>
-  	  <td><% if current_user.try(:id) == comment.user_id %> 
-  	        <%= link_to 'Delete', entry_comment_path(comment.commentable_id, comment),
-  		      method: :delete, data: { confirm: "Are you sure?" }, remote: true  %>
+	  <td class="user_names"><b><%= User.find(comment.user_id).username %>:</b></td>
+      <td class="user_comments"><%= simple_format(comment.content) %></td>
+  	  <td><% if current_user.try(:id) == comment.user_id || current_user.try(:admin) %> 
+  	        <%= link_to 'x', entry_comment_path(comment.commentable_id, comment),
+  		      method: :delete, data: { confirm: "Are you sure?" }, id: 'delete_comment', remote: true  %>
   	     <% end %>
   	</td>
   </tr>	
+  
