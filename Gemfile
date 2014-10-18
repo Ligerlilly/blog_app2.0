@@ -18,6 +18,8 @@ gem 'nokogiri'
 gem 'rmagick'
 gem 'devise'
 gem 'annotate'
+gem 'will_paginate', '~> 3.0.5'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
