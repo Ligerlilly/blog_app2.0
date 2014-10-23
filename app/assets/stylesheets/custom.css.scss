@@ -255,8 +255,9 @@ h3 {
 }
 
 #comment_form {
+  width: 420px;
   textarea {
-    width: 300px;
+    width: 400px;
     height: 100px;
     //white-space: pre;
     //word-wrap: normal;
@@ -265,42 +266,32 @@ h3 {
     
   }
 }
-table, td {
-  padding: 10px;
-  height: 60px;
-}
-table, tr {
-  
-}
-.comment_tables {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  width: 880px;
-  text-align: left;
-  table-layout: fixed;
 
+
+.comment_header {
+  padding-left: 80px;
+  width: 400px;
+  padding-bottom: 5px;
 }
-.user_comments {
-  width: 300px;
-  word-wrap: break-word;
-  //padding-left: 20px;
+.comment_content {
+  width: 600px;
+  padding-left: 80px;   
+  word-wrap: break-word;  
 }
-.user_names {
-  width: 130px;
-  text-align: left;
-  
-  
-  
+.comments {
+  margin-bottom: 40px;
 }
+
 
 .user_avatars {
-  overflow: auto;
-  margin-top: 10px;
+  //overflow: auto;
+  //margin-top: 10px;
   width: 70px;
-  padding-right: 10px;
+  height: 50px;
+  padding-right: 5px;
+  float: left;
   .avatar {
-    margin: 1px 1px;
-    float: left;
-    margin-right: 10px;
+    float: right;
   }
 }
 
@@ -309,8 +300,8 @@ table, tr {
 }
 
 .comment_closer {
-  width: 300px;
-  text-align: right;
+  float: right;
+  // text-align: right;
   color: red;
   font-weight: bold;
 }

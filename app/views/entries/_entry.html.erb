@@ -8,9 +8,9 @@
 <%= render entry.photos %>
 <%= simple_format(entry.content) %>
 <br />
-<table id='comment_table-<%= entry.id %>' class='comment_tables'>
+<ul id='comment_list-<%= entry.id %>' class='comment_lists'>
   <%= render entry.comments %>
-</table>
+</ul>
 <div id="comment-<%= entry.id %>"></div>
 
 

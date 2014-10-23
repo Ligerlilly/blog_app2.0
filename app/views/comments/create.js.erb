@@ -1,4 +1,4 @@
  
-$("#comment_table-<%= @comment.commentable_id %>").append("<%= j render @comment %>");
+$("#comment_list-<%= @comment.commentable_id %>").append("<%= j render @comment %>");
 $("#comment_form").remove();
 $("#comment_button-<%= @comment.commentable_id %>").show();
