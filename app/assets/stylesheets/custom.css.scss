@@ -275,7 +275,7 @@ h3 {
 }
 .comment_content {
   width: 600px;
-  padding-left: 80px;   
+  margin-left: 80px;   
   word-wrap: break-word;  
 }
 .comments {
@@ -295,6 +295,17 @@ h3 {
   }
 }
 
+.user_names {
+  font-weight: bold;
+  font-size: large;
+  //float: left;
+  margin-right: 5px;
+}
+.posted {
+  font-weight: normal;
+  font-size: small;
+  margin-left: 2px;
+}
 #eggTastic {
   height: 50px;
 }
