@@ -11,20 +11,23 @@
       </button>
       <!--<%= link_to 'Home', root_path, class: 'navbar-brand', id: "logo" %>-->
       <% unless params[:controller] == 'visitors' %>
-        <%= link_to 'Blog', entries_path, class: 'navbar-brand', id: 'logo' %>
+        <% unless params[:controller] == 'entries' && params[:action] == 'index' %>
+          <%= link_to 'Blog', entries_path, class: 'navbar-brand', id: 'logo' %>
+        <% end %>
+        
         <%= link_to 'New entry', new_entry_path, class: 'navbar-brand', id: 'logo' if current_user.try(:admin?) %>
         
-      <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
-        <%= link_to 'Sign in', new_user_session_path, class: 'sign_in_out', id: 'logo' %>
-      <% end %>
+        <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
+          <%= link_to 'Sign in', new_user_session_path, class: 'sign_in_out', id: 'logo' %>
+        <% end %>
       
-      <% if params[:controller] == 'devise/sessions' && params[:action] == 'new' %>
-        <%= link_to 'Sign up', new_user_registration_path, class: 'sign_in_out', id: 'logo' %>
-      <%end%>
+        <% if params[:controller] == 'devise/sessions' && params[:action] == 'new' %>
+          <%= link_to 'Sign up', new_user_registration_path, class: 'sign_in_out', id: 'logo' %>
+        <%end%>
       
-      <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'sign_in_out', id: 'logo' %> 
-      <% end %>
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'sign_in_out', id: 'logo' %> 
+        <% end %>
       <% end %>
     </div>
     <div class="collapse navbar-collapse">

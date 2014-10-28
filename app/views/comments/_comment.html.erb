@@ -9,12 +9,12 @@
 	  	  
 	</div>
 	<div class="comment_header"><div class="user_names"><%= User.find(comment.user_id).username %>
-		<span class="posted">posted <%= time_ago_in_words(comment.created_at) %> ago.</span></div>
+		<span class="posted">posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
 		
 		<span class="comment_closer"><% if current_user.try(:id) == comment.user_id || current_user.try(:admin) %> 
   	        <%= link_to 'x', entry_comment_path(comment.commentable_id, comment),
   		      method: :delete, data: { confirm: "Are you sure?" }, id: 'delete_comment', remote: true  %>
-  	     <% end %></span>
+  	     <% end %></span></div>
     </div>
     
     <div class="comment_content">

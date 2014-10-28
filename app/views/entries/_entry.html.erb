@@ -8,12 +8,16 @@
 <%= render entry.photos %>
 <%= simple_format(entry.content) %>
 <br />
+<% if entry.comments.length > 0 %>
+<button class="show_comments" id="<%= entry.id %>">show comments(<%= entry.comments.length %>)</button>
+<% end %>
 <ul id='comment_list-<%= entry.id %>' class='comment_lists'>
   <%= render entry.comments %>
 </ul>
+
 <div id="comment-<%= entry.id %>"></div>
 
-
+<br />
 
 <div id="comment_button-<%= entry.id %>">
 <% if current_user.nil? %>
