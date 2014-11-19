@@ -6,7 +6,13 @@ Rails.application.routes.draw do
     resources :comments
     resources :photos
   end
-  
-  resources :users
- 
+  namespace :admin do
+    root to: 'base#index'
+    resources :users do
+      collection do
+        get :edit_multiple
+        put :update_multiple
+      end
+    end
+  end
 end

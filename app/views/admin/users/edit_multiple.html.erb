@@ -1,0 +1,24 @@
+  <h1>Edit Checked Users</h1>
+
+  <%= form_tag update_multiple_admin_users_path, method: :put do %>
+    <% @users.each do |user| %>
+      <h2><%= user.username %></h2>
+      <%= fields_for "users[]", user do |f| %>
+        <% if user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(user.errors.count, 'error') %> prohibited this user from being saved:</h2>
+            <ul>
+              <% user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class='field'>
+          <%= f.label :admin %>
+          <%= f.check_box :admin %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= submit_tag "Update" %>
+  <% end %>

@@ -1,0 +1,14 @@
+<h1>User list</h1>
+<%= form_tag edit_multiple_admin_users_path, method: :get do %>
+<table>
+	<tr>
+	  <th>Username</th>
+	  <th>Email</th>
+	  <th>Last Sign in</th>
+	  <th>Admin</th>
+	</tr>
+	<%= render @users %>
+	
+</table>
+<%= submit_tag 'edit checked'%>
+<% end %>
