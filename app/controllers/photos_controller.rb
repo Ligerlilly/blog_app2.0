@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :load_photoable
-  before_action :is_user_admin, except: :show
+  before_action :is_user_admin?, except: :show
   
   def new
     @photo = @photoable.photos.new

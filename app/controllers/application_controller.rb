@@ -1,17 +1,27 @@
 class ApplicationController < ActionController::Base
+  before_action :is_user_banned?
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :store_location
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  def is_user_admin
+  def is_user_admin?
     authenticate_user!
     unless current_user.admin?
       flash[:alert] = 'You must be an admin to do that.'
       redirect_to root_path
     end
   end  
+
+  def is_user_banned?
+    if current_user.present? && current_user.banned?
+      sign_out current_user
+      flash[:alert] = 'Banned'
+      redirect_to page_path('banned')
+    end
+  end
+
   
 
   def store_location

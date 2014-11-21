@@ -16,10 +16,8 @@
         <% end %>
         
         <%= link_to 'New entry', new_entry_path, class: 'navbar-brand', id: 'logo' if current_user.try(:admin?) %>
-        <%= link_to 'Admin', admin_root_path, id: 'logo' if current_user.try(:admin?) %>
-        <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
-          <%= link_to 'Sign in', new_user_session_path, class: 'sign_in_out', id: 'logo' %>
-        <% end %>
+        <%= link_to 'Admin', admin_root_path,class: 'navbar-brand', id: 'logo' if current_user.try(:admin?) %>
+        
       
         <% if params[:controller] == 'devise/sessions' && params[:action] == 'new' %>
           <%= link_to 'Sign up', new_user_registration_path, class: 'sign_in_out', id: 'logo' %>
@@ -28,6 +26,9 @@
         <% if user_signed_in? %>
           <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'sign_in_out', id: 'logo' %> 
         <% end %>
+      <% end %>
+      <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
+        <%= link_to 'Sign in', new_user_session_path, class: 'sign_in_out', id: 'logo' %>
       <% end %>
     </div>
     <div class="collapse navbar-collapse">

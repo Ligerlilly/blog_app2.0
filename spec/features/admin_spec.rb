@@ -5,6 +5,7 @@
   feature 'Admin' do 
     let!(:user) { FactoryGirl.create(:user) }
     let!(:admin) { FactoryGirl.create(:admin) }
+    let!(:entry) { FactoryGirl.create(:entry) }
 
   	before do
       login_as(user, scope: :user)
@@ -16,6 +17,35 @@
     	expect(page).not_to have_content 'Admin'
     	visit '/admin'
     	expect(page).to have_content "You must be an admin to do that."
+    end
+
+    scenario 'admins can ban users and when banned user comments are deleted' do
+      click_link "Comment"
+      fill_in "comment_content", with: 'hi there'
+      click_button 'Create Comment'
+      expect(page).to have_content 'hi there'
+      expect(page).to have_css('.user_names', text: 'user')
+      expect(page).to  have_css("img[src$='eggTastic.jpg']")
+      logout(user)
+      login_as(admin, scope: :user)
+      visit '/'
+      click_link 'blog'
+      click_link 'Admin'
+      click_link 'Users'
+      find(:css, "#user_ids_[value='1']").set(true)
+      click_button "edit checked"
+      find(:css, "#users_1_banned").set(true)
+      click_button 'Update'
+      click_link 'Blog'
+      expect(page).not_to have_content 'hi there'
+      expect(page).not_to have_css('.user_names', text: 'user')
+      expect(page).not_to have_css("img[src$='eggTastic.jpg']")
+      click_link 'Logout'
+      click_link 'Sign in'
+      fill_in 'Email', with: user.email.to_s
+      fill_in 'Password', with: 'password'
+      click_button 'Log in' 
+      expect(page).to have_content "You have been banned"
     end
 
     scenario 'admin users can make other users admin' do
@@ -32,5 +62,7 @@
     	expect(User.find_by_id(1).admin?).to eq(true)
       expect(User.find_by_id(2).admin?).to eq(true)
     end
+
+
 
   end

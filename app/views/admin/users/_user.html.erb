@@ -3,7 +3,8 @@
   <td><%= user.username %></td>
   <td><%= user.email %></td>
   <td><%= time_ago_in_words(user.last_sign_in_at) %> </td>
-  <td><%= user.admin %> </td>
+  <td><%= user.admin %></td>
+  <td><%= user.banned %></td> 
   <td><%= check_box_tag 'user_ids[]', user.id %></td>
 </tr>
 

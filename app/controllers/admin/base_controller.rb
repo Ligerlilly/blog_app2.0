@@ -1,3 +1,3 @@
 class Admin::BaseController < ApplicationController
-  before_action :is_user_admin
+  before_action :is_user_admin?
 end
