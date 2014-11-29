@@ -3,6 +3,7 @@ Rails.application.routes.draw do
    
   root to: 'visitors#index'
   resources :entries do
+    get 'archive'
     resources :comments
     resources :photos
   end

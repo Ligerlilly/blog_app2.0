@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_action :is_user_admin?, except: [:index, :show]
+  before_action :is_user_admin?, except: [:index, :show, :archive]
   def index
     @entries = Entry.paginate(page: params[:page], per_page: 5)
     
@@ -47,6 +47,15 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+  end
+
+  def archive
+    year = params[:year].to_i
+    month = params[:month].to_i
+    @entries = Entry.where(:created_at => Time.mktime(year, month).to_date..(month < 12 ? Time.mktime(year, (month + 1)) :
+      Time.mktime((year + 1), 1)).to_date)
+    
+     
   end
   
   private
