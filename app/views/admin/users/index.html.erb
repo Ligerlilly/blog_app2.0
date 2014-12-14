@@ -1,4 +1,11 @@
 <h1>User list</h1>
+<%= search_form_for @search, url: admin_users_path do |f| %>
+  <%= f.label :username_cont, 'Username contains' %>
+  <%= f.text_field :username_cont %>
+  <%= f.submit 'search' %>
+<% end %>
+<br>
+
 <%= form_tag edit_multiple_admin_users_path, method: :get do %>
 <table>
 	<tr>

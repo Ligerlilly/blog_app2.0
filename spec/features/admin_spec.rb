@@ -7,6 +7,7 @@
     let!(:admin) { FactoryGirl.create(:admin) }
     let!(:entry) { FactoryGirl.create(:entry) }
 
+
   	before do
       login_as(user, scope: :user)
 		  visit '/'
@@ -71,6 +72,21 @@
       click_link 'Admin'
       click_link 'Comments'
       expect(page).to have_content(Comment.last)
+    end
+
+    scenario 'admin can search users' do
+      logout(user)
+      login_as(admin, scope: :user)
+      visit '/'
+      click_link 'blog'
+      click_link 'Admin'
+      click_link 'Users'
+      expect(page).to have_content(user.email)
+      expect(page).to have_content(admin.email)
+      fill_in 'q_username_cont', with: user.username.to_s
+      click_button 'search'
+      expect(page).to have_content(user.email)
+      expect(page).not_to have_content(admin.email)
     end
 
 
