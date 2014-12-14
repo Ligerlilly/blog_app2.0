@@ -6,6 +6,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.atom
     end
   end
   
@@ -53,9 +54,7 @@ class EntriesController < ApplicationController
     year = params[:year].to_i
     month = params[:month].to_i
     @entries = Entry.where(:created_at => Time.mktime(year, month).to_date..(month < 12 ? Time.mktime(year, (month + 1)) :
-      Time.mktime((year + 1), 1)).to_date)
-    
-     
+      Time.mktime((year + 1), 1)).to_date) 
   end
   
   private

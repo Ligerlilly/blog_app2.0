@@ -63,6 +63,16 @@
       expect(User.find_by_id(2).admin?).to eq(true)
     end
 
+    scenario 'admin can veiw all users comments' do
+      logout(user)
+      login_as(admin, scope: :user)
+      visit '/'
+      click_link 'blog'
+      click_link 'Admin'
+      click_link 'Comments'
+      expect(page).to have_content(Comment.last)
+    end
+
 
 
   end
