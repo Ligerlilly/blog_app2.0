@@ -1,5 +1,5 @@
- $('#comment_list-<%= @comment.commentable_id %>').show();
- $('#<%= @comment.commentable_id %>').hide();
+$('#comment_list-<%= @comment.commentable_id %>').show();
+$('#<%= @comment.commentable_id %>').hide();
 $("#comment_list-<%= @comment.commentable_id %>").append("<%= j render @comment %>");
 $("#comment_form").remove();
 $("#comment_button-<%= @comment.commentable_id %>").show();

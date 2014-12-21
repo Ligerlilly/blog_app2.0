@@ -6,7 +6,7 @@
   <small>Posted <%= time_ago_in_words(entry.created_at) %> ago.</small>
   <br />
   <%= render entry.photos %>
-  <%= simple_format(entry.content) %>
+  <%= simple_format(entry.content, {}, sanitize: false) %>
   <br />
 
   <% if entry.comments.length > 0 %>
@@ -27,7 +27,7 @@
     <% else %>
       <%= link_to "Comment", new_entry_comment_path(entry.id), class: "btn btn-primary", remote: true %>
     <%end%>
-</div>
+  </div>
 <%= link_to 'Edit', edit_entry_path(entry.id) if current_user.try(:admin?) %>
 </div>
 <br />
