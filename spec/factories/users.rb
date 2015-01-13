@@ -17,6 +17,8 @@
 #  updated_at             :datetime
 #  admin                  :boolean
 #  username               :string(255)
+#  avatar                 :string(255)
+#  banned                 :boolean          default(FALSE)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

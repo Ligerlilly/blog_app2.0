@@ -2,12 +2,13 @@
 #
 # Table name: photos
 #
-#  id         :integer          not null, primary key
-#  image      :string(255)
-#  caption    :text
-#  entry_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer          not null, primary key
+#  image          :string(255)
+#  caption        :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#  photoable_id   :integer
+#  photoable_type :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

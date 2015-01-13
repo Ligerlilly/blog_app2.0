@@ -3,12 +3,12 @@
 # Table name: comments
 #
 #  id               :integer          not null, primary key
-#  content          :string(255)
 #  commentable_id   :integer
 #  commentable_type :string(255)
 #  user_id          :integer
 #  created_at       :datetime
 #  updated_at       :datetime
+#  content          :text
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
