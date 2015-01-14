@@ -14,5 +14,6 @@ class Entry < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   validates :title, presence: true
   validates :content, presence: true
-  default_scope { order('entries.created_at DESC') }
+  default_scope { order( 'entries.created_at DESC' ) }
+  default_scope { where( created_at: Time.mktime(2014)..Time.now ) }
 end
