@@ -18,7 +18,9 @@
        <%= render 'layouts/messages' %>
        <%= yield %>
        </div>
-       <div class="debug_dump"><%= debug(params) unless params[:controller] == 'entries' && params[:action] == 'index' %></div>
+       <% if Rails.env.development? %>
+         <div class="debug_dump"><%= debug(params) unless params[:controller] == 'entries' && params[:action] == 'index' %></div>
+       <% end %>
     </main>
   </body>
 </html>
