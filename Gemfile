@@ -20,6 +20,7 @@ gem 'annotate'
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'ransack'
+gem 'pg'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -32,10 +33,8 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
-group :development, :test do
-  gem 'factory_girl_rails'
+group :development, :test do 
   gem 'rspec-rails'
-  gem 'sqlite3'
 end
 group :test do
   gem 'capybara'
@@ -43,8 +42,8 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end

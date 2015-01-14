@@ -15,5 +15,5 @@ class Entry < ActiveRecord::Base
   validates :title, presence: true
   validates :content, presence: true
   default_scope { order( 'entries.created_at DESC' ) }
-  default_scope { where( created_at: Time.mktime(2014)..Time.now ) }
+  #default_scope { where( created_at: Time.mktime(2014)..Time.now ) }
 end

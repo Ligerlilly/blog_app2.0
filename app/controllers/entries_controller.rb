@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_action :is_user_admin?, except: :index
   def index
-    @entries = Entry.paginate(page: params[:page], per_page: 5)
+    @entries = Entry.where( created_at: Time.mktime(2014)..Time.now ).paginate( page: params[:page], per_page: 5 )
     #.where(created_at: Time.mktime(2014)..Time.now)
     # respond_to do |format|
     #   format.html
