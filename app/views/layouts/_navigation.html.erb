@@ -42,7 +42,7 @@
         <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'navbar-brand', id: 'logo' %>
       <% end %>
 
-      <% if params[:controller] == 'index' %>
+      <% if params[:controller] == 'entries' %>
         <%= link_to image_tag("Feed_Icon_Bl.png", id: "rss"), entries_url(format: "atom"), class: 'navbar-brand' %>
       <% end %>
     </div>
