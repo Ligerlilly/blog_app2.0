@@ -33,9 +33,9 @@
       click_link 'blog'
       click_link 'Admin'
       click_link 'Users'
-      find(:css, "#user_ids_[value='1']").set(true)
+      find(:css, "#user_ids_[value='3']").set(true)
       click_button "edit checked"
-      find(:css, "#users_1_banned").set(true)
+      find(:css, "#users_3_banned").set(true)
       click_button 'Update'
       click_link 'Blog'
       expect(page).not_to have_content 'hi there'
@@ -56,12 +56,12 @@
       click_link 'blog'
       click_link 'Admin'
       click_link 'Users'
-    	find(:css, "#user_ids_[value='1']").set(true)
+    	find(:css, "#user_ids_[value='5']").set(true)
       click_button "edit checked"
-      find(:css, "#users_1_admin[value='1']").set(true)
+      find(:css, "#users_5_admin[value='1']").set(true)
       click_button 'Update'
-    	expect(User.find_by_id(1).admin?).to eq(true)
-      expect(User.find_by_id(2).admin?).to eq(true)
+    	expect(User.find_by_id(5).admin?).to eq(true)
+      expect(User.find_by_id(6).admin?).to eq(true)
     end
 
     scenario 'admin can veiw all users comments' do

@@ -42,7 +42,7 @@
         fill_in 'Password', with: 'password'
         click_button 'Log in'
         expect(page).not_to have_content('Edit')
-        visit 'entries/1/photos/new'
+        visit 'entries/17/photos/new'
         expect(page).to have_content("You must be an admin to do that.")
       end
    end

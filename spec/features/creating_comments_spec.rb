@@ -32,9 +32,9 @@
       fill_in 'comment_content', with: 'testing testing'
       click_button 'Create Comment'
       visit '/entries'
-      expect(page).to have_selector("#comment_list-1", visible: false)
-      click_button 'show_comments-1'
-      expect(page).to have_selector("#comment_list-1", visible: true)
+      expect(page).to have_selector("#comment_list-8", visible: false)
+      click_button 'show_comments-8'
+      expect(page).to have_selector("#comment_list-8", visible: true)
     end
     
     
