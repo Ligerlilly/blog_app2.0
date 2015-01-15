@@ -28,6 +28,9 @@
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
       </ul>
+      <% if params[:controller] == 'entries' %>
+        <%= link_to image_tag("Feed_Icon_Bl.png", id: "rss"), entries_url(format: "atom") %>
+      <% end %>
       
 
       <% if params[:controller] == 'devise/sessions' && params[:action] == 'new' %>
@@ -35,16 +38,14 @@
       <%end%>
 
       <% unless user_signed_in? || (params[:controller] == 'devise/sessions' && params[:action] == 'new') %>
-        <%= link_to 'Sign in', new_user_session_path, class: 'navbar-brand', id: 'logo' %>
+        <%= link_to 'Sign in', new_user_session_path, class: 'logout', id: 'logo' %>
       <% end %>
 
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'navbar-brand', id: 'logo' %>
+        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'logout', id: 'logo' %>
       <% end %>
 
-      <% if params[:controller] == 'entries' %>
-        <%= link_to image_tag("Feed_Icon_Bl.png", id: "rss"), entries_url(format: "atom"), class: 'navbar-brand' %>
-      <% end %>
+      
     </div>
   </div>
 </nav>
