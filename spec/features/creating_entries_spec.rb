@@ -2,7 +2,7 @@
   
   feature 'Creating entries' do
     before do
-      FactoryGirl.create(:user, email: 'test@test.com', password: 'password', admin: true) 
+      FactoryGirl.create(:user, email: 'test@test.com', password: 'password', admin: true)
       visit '/'
       click_link 'blog'
     end
